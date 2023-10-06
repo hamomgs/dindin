@@ -1,0 +1,35 @@
+{
+  "name": "dindin",
+  "version": "1.0.0",
+  "description": "![](https://i.imgur.com/xG74tOh.png)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src/ --ext js,json --ignore src/logs/ --exec node src/index.js",
+    "lint:check": "prettier --check src/**/*.js",
+    "lint:fix": "prettier --write src/**/*.js",
+    "lint": "eslint src/**/*.js"
+  },
+  "keywords": [
+    "npm",
+    "node",
+    "javascript",
+    "express",
+    "postgres"
+  ],
+  "author": "Hamom Silva e Gabriel Apolinário",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.49.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3"
+  }
+}
