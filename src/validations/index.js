@@ -2,12 +2,12 @@ const db = require('../services/database');
 const bcrypt = require('bcrypt');
 
 const validateNameField = (req, res, next) => {
-  const { nome } = req.body;
+  const { nome: name } = req.body;
 
-  if (!nome) {
+  if (!name) {
     return res
       .status(400)
-      .json({ message: 'Todos os campos são obrigatórios!' });
+      .json({ mensagem: 'Todos os campos são obrigatórios!' });
   }
   next();
 };
@@ -18,19 +18,19 @@ const validateEmailField = (req, res, next) => {
   if (!email) {
     return res
       .status(400)
-      .json({ message: 'Todos os campos são obrigatórios!' });
+      .json({ mensagem: 'Todos os campos são obrigatórios!' });
   }
 
   next();
 };
 
 const validatePasswordField = (req, res, next) => {
-  const { senha } = req.body;
+  const { senha: password } = req.body;
 
-  if (!senha) {
+  if (!password) {
     return res
       .status(400)
-      .json({ message: 'Todos os campos são obrigatórios!' });
+      .json({ mensagem: 'Todos os campos são obrigatórios!' });
   }
 
   next();
@@ -44,7 +44,7 @@ const checkEmailExists = async (req, res, next) => {
 
     if (existingUser.rowCount > 0) {
       return res.status(400).json({
-        menssage: 'Já existe usuário cadastrado com o e-mail informado.',
+        mensagem: 'Já existe usuário cadastrado com o e-mail informado.',
       });
     }
 
@@ -63,7 +63,7 @@ const checkEmailDontExists = async (req, res, next) => {
     if (existingUser.rowCount === 0) {
       return res
         .status(400)
-        .json({ menssage: 'Usuário e/ou senha inválido(s).' });
+        .json({ mensagem: 'Usuário e/ou senha inválido(s).' });
     }
 
     next();
@@ -73,21 +73,21 @@ const checkEmailDontExists = async (req, res, next) => {
 };
 
 const validatePassword = async (req, res, next) => {
-  const { email, senha } = req.body;
+  const { email, senha: password } = req.body;
 
   try {
     const user = await db.getUserByEmail(email);
-    const validPassword = await bcrypt.compare(senha, user.rows[0].senha);
+    const validPassword = await bcrypt.compare(password, user.rows[0].senha);
 
     if (!validPassword) {
       return res
         .status(400)
-        .json({ message: 'Usuário e/ou senha inválido(s).' });
+        .json({ mensagem: 'Usuário e/ou senha inválido(s).2' });
     }
 
     next();
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error.' });
+    return res.status(500).json({ messagem: 'Internal server error.' });
   }
 };
 
@@ -97,16 +97,17 @@ const userEmailEdit = async (req, res, next) => {
   try {
     if (email !== req.user.email) {
       const emailQuery = await db.getUserByEmail(email);
+      
       if (emailQuery.rowCount > 0) {
         return res
           .status(400)
-          .json({ message: 'O email fornecido já está em uso.' });
+          .json({ mensagem: 'O email fornecido já está em uso.' });
       }
     }
 
     next();
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error.' });
+    return res.status(500).json({ mensagem: 'Internal server error.' });
   }
 };
 
@@ -114,37 +115,43 @@ const validateIdParameter = (req, res, next) => {
   const { id } = req.params;
 
   if (isNaN(id)) {
-    return res.status(400).json({ message: 'Informe um id válido.' });
+    return res.status(400).json({ mensagem: 'Informe um id válido.' });
   }
 
   next();
 };
 
 const validateTransactionFields = async (req, res, next) => {
-  const { descricao, valor, data, categoria_id, tipo } = req.body;
+  const {
+    descricao: description,
+    valor: value,
+    data: date,
+    categoria_id: id_category,
+    tipo: type,
+  } = req.body;
 
   try {
-    if (!descricao || !valor || !data || !categoria_id || !tipo) {
+    if (!description || !value || !date || !id_category || !type) {
       return res.status(400).json({
-        message: 'Todos os campos obrigatórios devem ser informados.',
+        mensagem: 'Todos os campos obrigatórios devem ser informados.',
       });
     }
 
-    const categoriaQuery = await db.getCategoryById(categoria_id);
+    const categoryQuery = await db.getCategoryById(id_category);
 
-    if (categoriaQuery.rowCount === 0) {
-      return res.status(400).json({ message: 'Categoria não encontrada.' });
+    if (categoryQuery.rowCount === 0) {
+      return res.status(400).json({ mensagem: 'Categoria não encontrada.' });
     }
 
-    if (tipo !== 'saida' && tipo !== 'entrada') {
+    if (type !== 'saida' && type !== 'entrada') {
       return res
         .status(400)
-        .json({ message: `O campo tipo deve receber 'saida' ou 'entrada'.` });
+        .json({ mensagem: `O campo tipo deve receber 'saida' ou 'entrada'.` });
     }
 
     next();
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error.' });
+    return res.status(500).json({ mensagem: 'Internal server error.' });
   }
 };
 
@@ -158,12 +165,12 @@ const validadeIdTransaction = async (req, res, next) => {
     );
 
     if (transactionValidation.rowCount === 0) {
-      return res.status(404).json({ message: 'Transação não encontrada.' });
+      return res.status(404).json({ mensagem: 'Transação não encontrada.' });
     }
 
     next();
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error.' });
+    return res.status(500).json({ mensagem: 'Internal server error.' });
   }
 };
 

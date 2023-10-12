@@ -8,16 +8,16 @@ const pool = new Pool({
   database: process.env.DB_NAME || 'postgres',
 });
 
-const createUser = async (nome, email, encryptedPassword) => {
+const createUser = async (name, email, encryptedPassword) => {
   try {
     const query =
       'INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING id, nome, email';
-    const values = [nome, email, encryptedPassword];
+    const values = [name, email, encryptedPassword];
     const { rows } = await pool.query(query, values);
 
     return rows[0];
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -29,7 +29,7 @@ const getUserByEmail = async (email) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -41,20 +41,20 @@ const getUserById = async (id) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
-const upadateUser = async (nome, email, encryptedPassword, id) => {
+const upadateUser = async (name, email, encryptedPassword, id) => {
   try {
     const query =
       'UPDATE usuarios SET nome = $1, email = $2, senha = $3 WHERE id = $4';
-    const values = [nome, email, encryptedPassword, id];
+    const values = [name, email, encryptedPassword, id];
     const { rowCount, rows } = await pool.query(query, values);
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -65,7 +65,7 @@ const getCategories = async () => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -81,7 +81,7 @@ const getFilteredTransactions = async (id, filter) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -97,7 +97,7 @@ const getAllTransactionsById = async (id) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -109,16 +109,16 @@ const getTransactionById = async (id, userId) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
 const createTransaction = async (
-  descricao,
-  valor,
-  data,
-  categoria_id,
-  tipo,
+  description,
+  value,
+  date,
+  id_category,
+  type,
   id,
 ) => {
   try {
@@ -126,12 +126,12 @@ const createTransaction = async (
       VALUES ($1, $2, $3, $4, $5, $6) 
       RETURNING *
     `;
-    const values = [descricao, valor, data, categoria_id, tipo, id];
+    const values = [description, value, date, id_category, type, id];
     const { rowCount, rows } = await pool.query(query, values);
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -144,16 +144,16 @@ const getCategoryNameById = async (id) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
 const upadateTransaction = async (
-  descricao,
-  valor,
-  data,
-  categoria_id,
-  tipo,
+  description,
+  value,
+  date,
+  id_category,
+  type,
   id,
 ) => {
   try {
@@ -161,12 +161,12 @@ const upadateTransaction = async (
       SET descricao = $1, valor = $2, data = $3, categoria_id = $4, tipo = $5 
       WHERE id = $6
     `;
-    const values = [descricao, valor, data, categoria_id, tipo, id];
+    const values = [description, value, date, id_category, type, id];
     const { rowCount, rows } = await pool.query(query, values);
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -178,7 +178,7 @@ const deleteTransaction = async (id) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -190,7 +190,7 @@ const getTransactionsInflowSum = async (id) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -202,7 +202,7 @@ const getTransactionsOutflowSum = async (id) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -214,7 +214,7 @@ const getCategoryById = async (id) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 
@@ -226,7 +226,7 @@ const getTransactionByUserId = async (id, userId) => {
 
     return { rowCount, rows };
   } catch (error) {
-    return res.status(500).json({ messagem: 'Erro interno do servidor.' });
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
 

@@ -13,7 +13,7 @@ const create = (data) => {
 
 const getUser = (token) => {
   try {
-    jwt.verify(token, config.pass);
+    return jwt.verify(token, config.pass);
   } catch (error) {
     return;
   }
