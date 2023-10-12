@@ -4,7 +4,22 @@ const loginRouter = require('./loginRouter');
 const categoryRouter = require('./categoryRouter');
 const transactionRouter = require('./transactionRouter');
 
-routes.use('/login', loginRouter);
+// Validations
+const {
+  validateEmailField,
+  validatePasswordField,
+  checkEmailDontExists,
+  validatePassword,
+} = require('../validations/index');
+
+routes.use(
+  '/login',
+  validateEmailField,
+  validatePasswordField,
+  checkEmailDontExists,
+  validatePassword,
+  loginRouter,
+);
 routes.use('/usuario', userRouter);
 routes.use('/categoria', categoryRouter);
 routes.use('/transacao', transactionRouter);
