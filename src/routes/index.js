@@ -4,6 +4,9 @@ const loginRouter = require('./loginRouter');
 const categoryRouter = require('./categoryRouter');
 const transactionRouter = require('./transactionRouter');
 
+// Middlewares
+const checkAuthUser = require('../middlewares/userAuth');
+
 // Validations
 const {
   validateEmailField,
@@ -21,7 +24,7 @@ routes.use(
   loginRouter,
 );
 routes.use('/usuario', userRouter);
-routes.use('/categoria', categoryRouter);
-routes.use('/transacao', transactionRouter);
+routes.use('/categoria', checkAuthUser, categoryRouter);
+routes.use('/transacao', checkAuthUser, transactionRouter);
 
 module.exports = routes;
