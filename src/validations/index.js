@@ -97,7 +97,7 @@ const userEmailEdit = async (req, res, next) => {
   try {
     if (email !== req.user.email) {
       const emailQuery = await db.getUserByEmail(email);
-      
+
       if (emailQuery.rowCount > 0) {
         return res
           .status(400)

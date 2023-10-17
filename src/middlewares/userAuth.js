@@ -17,7 +17,7 @@ const checkAuthUser = async (req, res, next) => {
     const userDecoded = jwt.getUser(token);
 
     const { rows, rowCount } = await db.getUserById(userDecoded.id);
-    
+
     if (rowCount === 0) {
       return res.status(401).json({ mensagem: 'Não autorizado!' });
     }
