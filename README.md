@@ -25,7 +25,7 @@ Follow these instructions to run the project in your local environment.
 ### 🚀 Pre-requisites
 
 - You'll need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/) installed on your computer to build this app.
-- Use [Insomnia](https://insomnia.rest/download) to perform the API requests.
+- Use [Insomnia](https://insomnia.rest/download) or [Postman](https://www.postman.com/downloads/) to perform the API requests.
 - Additionally, having an editor like [VSCode](https://code.visualstudio.com/) for coding is quite advantageous.
 
 ### 🎲 Building
@@ -65,6 +65,8 @@ $ npm run dev
 
 # The application will be accessible on port:3000 by default via http://localhost:3000.
 ```
+
+Import on Insomnia or Postman the [request collection](https://github.com/hamomgs/dindin/blob/main/Insomnia-collection.json).
 
 <p align="center">
   <a href="https://insomnia.rest/download" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
