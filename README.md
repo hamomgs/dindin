@@ -37,11 +37,14 @@ $ cd dindin
 
 # Install the dependencies
 $ npm install
-```
 
-Change the name of the file `.env.example` to `.env` and fill it with your port, database data and jwt password.
+# Make a copy of file '.env.example' to '.env'
+$ cp .env.example .env
 
-```bash
+# Acess the .env
+$ code .env
+
+# Fill it with your port, database and jwt config.
 PORT=3000
 
 # JWT Config
@@ -79,7 +82,7 @@ http://localhost:3000/
 
 ### 🧩 Endpoits
 
-#### User
+### User
 **Create user** | `POST /usuario`
 
 | Param | Type | Origin | Description |
@@ -97,6 +100,8 @@ http://localhost:3000/
   "email": "jose@email.com"
 }
 ```
+
+##
 
 **User login** | `POST /login` 
 
@@ -118,6 +123,8 @@ http://localhost:3000/
 }
 ```
 
+##
+
 **Get logged user details** | `GET /usuario`
 
 | Param | Type | Origin | Description |
@@ -134,6 +141,8 @@ http://localhost:3000/
 }
 ```
 
+##
+
 **Edit user profile** | `PUT /usuario`
 
 | Param | Type | Origin | Description |
@@ -149,7 +158,9 @@ http://localhost:3000/
 // No body response.
 ```
 
-#### Category
+##
+
+### Category
 **List all categories** | `GET /categoria` 
 
 | Param | Type | Origin | Description |
@@ -170,8 +181,10 @@ http://localhost:3000/
   }
 ]
 ```
-  
-#### Transaction
+
+##
+
+### Transaction
 **List all transactions** | `GET /transacao` 
 
 | Param | Type | Origin | Description |
@@ -204,6 +217,8 @@ http://localhost:3000/
   }
 ]
 ```
+
+##
 
 **List all filtered transactions** | `GET /transacao?filtro[]=categoria1&filtro[]=categoria2`
 
@@ -239,6 +254,8 @@ http://localhost:3000/
 ]
 ```
 
+##
+
 **Get transaction details by id** | `GET /transacao/:id` 
 
 | Param | Type | Origin | Description |
@@ -261,6 +278,8 @@ http://localhost:3000/
 }
 ```
 
+##
+
 **Create transaction** | `POST /transacao` 
 
 | Param | Type | Origin | Description |
@@ -276,16 +295,18 @@ http://localhost:3000/
 // Example Response
 // HTTP Status 204
 {
-    "id": 3,
-    "tipo": "entrada",
-    "descricao": "Salário",
-    "valor": 300000,
-    "data": "2022-03-24T15:30:00.000Z",
-    "usuario_id": 5,
-    "categoria_id": 6,
-    "categoria_nome": "Salários"
+  "id": 3,
+  "tipo": "entrada",
+  "descricao": "Salário",
+  "valor": 300000,
+  "data": "2022-03-24T15:30:00.000Z",
+  "usuario_id": 5,
+  "categoria_id": 6,
+  "categoria_nome": "Salários"
 }
 ```
+
+##
 
 **Edit specific transacion** | `PUT /transacao/:id` 
 
@@ -305,6 +326,8 @@ http://localhost:3000/
 // No body response.
 ```
 
+##
+
 **Remove transaction** | `DELETE /transacao/:id` 
 
 | Param | Type | Origin | Description |
@@ -317,6 +340,8 @@ http://localhost:3000/
 // HTTP Status 204
 // No body response.
 ```
+
+##
 
 **Get transaction statement** | `GET /transacao/extrato` 
 
