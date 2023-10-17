@@ -88,7 +88,7 @@ http://localhost:3000/
 | `email` | `string` | Body | **Required**. User email. |
 | `senha` | `string` | Body | **Required**. User password. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 201 
 {
@@ -105,7 +105,7 @@ http://localhost:3000/
 | `email` | `string` | Body | **Required**. User email. |
 | `senha` | `string` | Body | **Required**. User password. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 200
 {
@@ -124,7 +124,7 @@ http://localhost:3000/
 | ----- | ---- | ------ | ----------- |
 | `token` | `Beater` | Authentication | **Required**. Token returned to the user after logging in. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 200
 {
@@ -143,7 +143,7 @@ http://localhost:3000/
 | `email` | `string` | Body | **Required**. User email. |
 | `senha` | `string` | Body | **Required**. User password. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 204
 // No body response.
@@ -156,7 +156,7 @@ http://localhost:3000/
 | ----- | ---- | ------ | ----------- |
 | `token` | `Beater` | Authentication | **Required**. Token returned to the user after logging in. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 200
 [
@@ -178,7 +178,7 @@ http://localhost:3000/
 | ----- | ---- | ------ | ----------- |
 | `token` | `Beater` | Authentication | **Required**. Token returned to the user after logging in. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 200
 [
@@ -212,7 +212,7 @@ http://localhost:3000/
 | `token` | `Beater` | Authentication | **Required**. Token returned to the user after logging in. |
 | `filtro[]` | `array` | Query | **Optional**. Category name. |
 
-```json
+```jsx
 // Example Response | GET /transacao?filtro[]=roupas&filtro[]=salários
 // HTTP Status 200
 [
@@ -246,7 +246,7 @@ http://localhost:3000/
 | `token` | `Beater` | Authentication | **Required**. Token returned to the user after logging in. |
 | `id` | `number` | Parameter | **Required**. Transaction id. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 200
 {
@@ -272,7 +272,7 @@ http://localhost:3000/
 | `data` | `timestamp` | Body | **Required**. Transaction date. |
 | `categoria_id` | `number` | Body | **Required**. Category id. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 204
 {
@@ -299,7 +299,7 @@ http://localhost:3000/
 | `data` | `timestamp` | Body | **Required**. Transaction date. |
 | `categoria_id` | `number` | Body | **Required**. Category id. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 204
 // No body response.
@@ -312,7 +312,7 @@ http://localhost:3000/
 | `token` | `Beater` | Authentication | **Required**. Token returned to the user after logging in. |
 | `id` | `string` | Parameter | **Required**. Transaction id. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 204
 // No body response.
@@ -324,7 +324,7 @@ http://localhost:3000/
 | ----- | ---- | ------ | ----------- |
 | `token` | `Beater` | Authentication | **Required**. Token returned to the user after logging in. |
 
-```json
+```jsx
 // Example Response
 // HTTP Status 200
 {
